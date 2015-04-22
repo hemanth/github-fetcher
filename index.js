@@ -1,26 +1,44 @@
-"use strict";
-var polyfill = require("es6-promise").polyfill;
-polyfill();
+'use strict';
 
-require("isomorphic-fetch");
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-var apiURL = "https://api.github.com";
+var _polyfill = require('es6-promise');
+
+require('isomorphic-fetch');
+
+'use strict';
+
+_polyfill.polyfill();
+
+var apiURL = 'https://api.github.com';
 
 var endPoints = {
-  user: "/users/"
+  users: '/users/',
+  orgs: '/orgs/'
 };
 
-module.exports = (function () {
-  return {
-    user: function (userName) {
-      if (!userName) {
-        throw new Error("User name is mandatory");
-      }
+var checkFetch = function checkFetch(userName, url) {
+  if (!userName) {
+    throw new Error('User name is mandatory');
+  }
+  return fetch(url).then(function (data) {
+    return data.json();
+  });
+};
 
-      return fetch("" + apiURL + "" + endPoints.user + "" + userName).then(function (data) {
-        return data.json();
-      });
+exports['default'] = (function () {
+  return {
+    user: function user(userName) {
+      return checkFetch(userName, '' + apiURL + '' + endPoints.users + '' + userName);
+    },
+
+    orgs: function orgs(userName) {
+      return checkFetch(userName, '' + apiURL + '' + endPoints.users + '' + userName + '' + endPoints.orgs);
     }
   };
 })();
+
+module.exports = exports['default'];
 

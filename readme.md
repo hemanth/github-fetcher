@@ -18,12 +18,20 @@ var githubFetcher = require('github-fetcher');
 
 ## API
 
-# Get user
+## Fetch user info.
 
 ```js
 githubFetcher.user('hemanth').
-  then( (data) => console.log(data)).
-	catch( (err) => console.log(err));
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
+## Fetch organizations of an user.
+
+```js
+githubFetcher.orgs('hemanth').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
 ```
 
 ## TODO

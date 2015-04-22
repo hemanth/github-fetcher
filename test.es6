@@ -6,3 +6,8 @@ it('should return the user info', () => {
       githubFetcher.user('hemanth').then( (data) =>
         assert.equal(data.login,'hemanth'));
 });
+
+it('should return the orgs of the user', () => {
+      githubFetcher.orgs('hemanth').then( (data) =>
+        assert.equal(data.login,'hemanth'));
+});

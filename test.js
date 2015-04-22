@@ -1,18 +1,24 @@
-"use strict";
+'use strict';
 
-var _interopRequire = function (obj) {
-  return obj && (obj["default"] || obj);
-};
+var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
 
-"use strict";
-var assert = _interopRequire(require("assert"));
+var _assert = require('assert');
 
-var githubFetcher = _interopRequire(require("./"));
+var _assert2 = _interopRequireWildcard(_assert);
 
-it("should return the user info", function () {
-  console.log(githubFetcher);
-  githubFetcher.user("hemanth").then(function (data) {
-    return assert.equal(data.login, "hemanth");
+var _githubFetcher = require('./');
+
+var _githubFetcher2 = _interopRequireWildcard(_githubFetcher);
+
+it('should return the user info', function () {
+  _githubFetcher2['default'].user('hemanth').then(function (data) {
+    return _assert2['default'].equal(data.login, 'hemanth');
+  });
+});
+
+it('should return the orgs of the user', function () {
+  _githubFetcher2['default'].orgs('hemanth').then(function (data) {
+    return _assert2['default'].equal(data.login, 'hemanth');
   });
 });
 
