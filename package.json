@@ -1,0 +1,35 @@
+{
+  "name": "github-fetcher",
+  "version": "0.0.0",
+  "description": "Promised based isomorphic Github API.",
+  "license": "MIT",
+  "repository": "hemanth/github-fetcher",
+  "author": {
+    "name": "Hemanth.HM",
+    "email": "hemanth.hm@gmail.com",
+    "url": "h3manth.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "babel test.es6 > test.js && mocha",
+    "prepublish": "babel index.es6 > index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "promise",
+    "isomorphic",
+    "fetch"
+  ],
+  "dependencies": {
+    "es6-promise": "^2.1.0",
+    "isomorphic-fetch": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel": "^5.1.11",
+    "mocha": "*"
+  }
+}
