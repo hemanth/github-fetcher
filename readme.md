@@ -27,7 +27,7 @@ githubFetcher.user('hemanth').
 ```
 
 ## TODO
-[issue#1](https://github.com/github-fetcher/issues/1)
+[issue#1](https://github.com/hemanth/github-fetcher/issues/1)
 
 ## License
 
