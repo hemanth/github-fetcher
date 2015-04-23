@@ -34,6 +34,14 @@ githubFetcher.orgs('hemanth').
 	catch( (err) => console.log(err) );
 ```
 
+## Fetch all the public gists of an user.
+
+```js
+githubFetcher.gists('hemanth').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)
 
