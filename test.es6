@@ -12,7 +12,12 @@ it('should return the orgs of the user', () => {
         assert.equal(data.login,'hemanth'));
 });
 
+it('should return the gists of the user', () => {
+      githubFetcher.gists('hemanth').then( (data) =>
+        assert.equal(data[0].public,true));
+});
 
-it('should return the gist of the user', () => {
-      githubFetcher.gists('hemanth').then( (data) => console.log(data) );
+it('should return all the stargazers.', () => {
+      githubFetcher.stargazers('hemanth','es7-features').then( (data) =>
+        assert(data.length > 0, true) );
 });

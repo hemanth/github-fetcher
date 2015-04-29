@@ -42,6 +42,14 @@ githubFetcher.gists('hemanth').
 	catch( (err) => console.log(err) );
 ```
 
+## Fetch all the stargazers for a given user and repo.
+
+```js
+githubFetcher.gists('hemanth','es7-features').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)
 
