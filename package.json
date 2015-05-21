@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "babel test.es6 > test.js && mocha",
+    "test": "babel index.es6 > index.js && babel test.es6 > test.js && mocha",
     "prepublish": "babel index.es6 > index.js"
   },
   "files": [

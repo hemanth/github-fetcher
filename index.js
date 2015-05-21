@@ -1,16 +1,13 @@
 'use strict';
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _polyfill = require('es6-promise');
+var _es6Promise = require('es6-promise');
 
 require('isomorphic-fetch');
 
-'use strict';
-
-_polyfill.polyfill();
+(0, _es6Promise.polyfill)();
 
 var apiURL = 'https://api.github.com';
 
@@ -18,7 +15,8 @@ var endPoints = {
   users: '/users/',
   orgs: '/orgs/',
   gists: '/gists',
-  stargazers: '/repos/:owner/:repo/stargazers'
+  stargazers: '/repos/:owner/:repo/stargazers',
+  repos: '/repos'
 };
 
 var checkFetch = function checkFetch(userName, url) {
@@ -51,6 +49,10 @@ exports['default'] = (function () {
 
     stargazers: function stargazers(owner, repo) {
       return checkFetch(owner, ('' + apiURL + '' + endPoints.stargazers).replace(':owner', owner).replace(':repo', repo));
+    },
+
+    repos: function repos(owner) {
+      return checkFetch(owner, '' + apiURL + '' + endPoints.users + '' + owner + '' + endPoints.repos);
     }
   };
 })();

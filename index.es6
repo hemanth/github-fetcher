@@ -13,7 +13,8 @@ let endPoints = {
   users: '/users/',
   orgs: '/orgs/',
   gists: '/gists',
-  stargazers: '/repos/:owner/:repo/stargazers'
+  stargazers: '/repos/:owner/:repo/stargazers',
+  repos: '/repos'
 };
 
 let checkFetch = (userName, url) => {
@@ -42,6 +43,9 @@ export default (() => {
     stargazers: (owner, repo) => checkFetch(owner,
       `${apiURL}${endPoints.stargazers}`
       .replace(':owner', owner)
-      .replace(':repo', repo))
+      .replace(':repo', repo)),
+
+    repos: (owner) => checkFetch(owner,
+      `${apiURL}${endPoints.users}${owner}${endPoints.repos}`)
   };
 }());
