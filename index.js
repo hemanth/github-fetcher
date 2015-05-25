@@ -16,7 +16,8 @@ var endPoints = {
   orgs: '/orgs/',
   gists: '/gists',
   stargazers: '/repos/:owner/:repo/stargazers',
-  repos: '/repos'
+  repos: '/repos',
+  branches: '/repos/:owner/:repo/branches'
 };
 
 var checkFetch = function checkFetch(userName, url) {
@@ -27,7 +28,7 @@ var checkFetch = function checkFetch(userName, url) {
   if (!(userName.constructor === String)) {
     throw new Error('Username must be a string');
   }
-
+  console.log(url);
   return fetch(url).then(function (data) {
     return data.json();
   });
@@ -53,6 +54,10 @@ exports['default'] = (function () {
 
     repos: function repos(owner) {
       return checkFetch(owner, '' + apiURL + '' + endPoints.users + '' + owner + '' + endPoints.repos);
+    },
+
+    branches: function branches(owner, repo) {
+      return checkFetch(owner, ('' + apiURL + '' + endPoints.branches).replace(':owner', owner).replace(':repo', repo));
     }
   };
 })();

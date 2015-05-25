@@ -40,3 +40,9 @@ it('should return all the repos for the given user.', function () {
   });
 });
 
+it('should return all the branches of a repo for the given user.', function () {
+  _2['default'].repos('hemanth', 'es7-features').then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+});
+

@@ -14,7 +14,8 @@ let endPoints = {
   orgs: '/orgs/',
   gists: '/gists',
   stargazers: '/repos/:owner/:repo/stargazers',
-  repos: '/repos'
+  repos: '/repos',
+  branches: '/repos/:owner/:repo/branches'
 };
 
 let checkFetch = (userName, url) => {
@@ -25,7 +26,7 @@ let checkFetch = (userName, url) => {
   if (!(userName.constructor === String)) {
     throw new Error("Username must be a string");
   }
-
+  console.log(url);
   return fetch(url).then((data) => data.json());
 };
 
@@ -46,6 +47,11 @@ export default (() => {
       .replace(':repo', repo)),
 
     repos: (owner) => checkFetch(owner,
-      `${apiURL}${endPoints.users}${owner}${endPoints.repos}`)
+      `${apiURL}${endPoints.users}${owner}${endPoints.repos}`),
+
+    branches: (owner, repo) => checkFetch(owner,
+      `${apiURL}${endPoints.branches}`
+      .replace(':owner', owner)
+      .replace(':repo', repo))
   };
 }());

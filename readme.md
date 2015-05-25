@@ -42,10 +42,18 @@ githubFetcher.gists('hemanth').
 	catch( (err) => console.log(err) );
 ```
 
-## Fetch all the repos for a given user
+## Fetch all the repos for a given user.
 
 ```js
 githubFetcher.repos('hemanth').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
+## Fetch all the branches for a given repo and user.
+
+```js
+githubFetcher.branches('hemanth','paws-on-es6').
   then( (data) => console.log(data) ).
 	catch( (err) => console.log(err) );
 ```
