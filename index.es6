@@ -1,57 +1,61 @@
 'use strict';
 import {
-  polyfill
+	polyfill
 }
 from 'es6-promise';
 polyfill();
 
+import assert from 'assert'
 import 'isomorphic-fetch';
 
 let apiURL = 'https://api.github.com';
 
 let endPoints = {
-  users: '/users/',
-  orgs: '/orgs/',
-  gists: '/gists',
-  stargazers: '/repos/:owner/:repo/stargazers',
-  repos: '/repos',
-  branches: '/repos/:owner/:repo/branches'
+	users: '/users/',
+	orgs: '/orgs/',
+	gists: '/gists',
+	stargazers: '/repos/:owner/:repo/stargazers',
+	repos: '/repos',
+	branches: '/repos/:owner/:repo/branches',
+	emojis: '/emojis'
+};
+
+let get = (url) => {
+	return fetch(url).then((data) => data.json());
+};
+
+let assertType = (input, type, msg) => {
+	assert.equal(typeof input, type, msg);
 };
 
 let checkFetch = (userName, url) => {
-  if (!userName) {
-    throw new Error("User name is mandatory");
-  }
-
-  if (!(userName.constructor === String)) {
-    throw new Error("Username must be a string");
-  }
-  console.log(url);
-  return fetch(url).then((data) => data.json());
+	assertType(userName, 'string', 'User name is mandatory and must be a string');
+	return get(url);
 };
 
 export default (() => {
-  return {
-    user: (userName) => checkFetch(userName,
-      `${apiURL}${endPoints.users}${userName}`),
+	return {
+		user: (userName) => checkFetch(userName,
+			`${apiURL}${endPoints.users}${userName}`),
 
-    orgs: (userName) => checkFetch(userName,
-      `${apiURL}${endPoints.users}${userName}${endPoints.orgs}`),
+		orgs: (userName) => checkFetch(userName,
+			`${apiURL}${endPoints.users}${userName}${endPoints.orgs}`),
 
-    gists: (userName) => checkFetch(userName,
-      `${apiURL}${endPoints.users}${userName}${endPoints.gists}`),
+		gists: (userName) => checkFetch(userName,
+			`${apiURL}${endPoints.users}${userName}${endPoints.gists}`),
 
-    stargazers: (owner, repo) => checkFetch(owner,
-      `${apiURL}${endPoints.stargazers}`
-      .replace(':owner', owner)
-      .replace(':repo', repo)),
+		stargazers: (owner, repo) => checkFetch(owner,
+			`${apiURL}${endPoints.stargazers}`
+			.replace(':owner', owner)
+			.replace(':repo', repo)),
 
-    repos: (owner) => checkFetch(owner,
-      `${apiURL}${endPoints.users}${owner}${endPoints.repos}`),
+		repos: (owner) => checkFetch(owner,
+			`${apiURL}${endPoints.users}${owner}${endPoints.repos}`),
 
-    branches: (owner, repo) => checkFetch(owner,
-      `${apiURL}${endPoints.branches}`
-      .replace(':owner', owner)
-      .replace(':repo', repo))
-  };
+		branches: (owner, repo) => checkFetch(owner,
+			`${apiURL}${endPoints.branches}`
+			.replace(':owner', owner)
+			.replace(':repo', repo))
+
+	};
 }());
