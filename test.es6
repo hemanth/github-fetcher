@@ -31,3 +31,9 @@ it('should return all the branches of a repo for the given user.', () => {
   githubFetcher.repos('hemanth', 'es7-features').then((data) =>
     assert.equal(data.length > 0, true));
 });
+
+it('should return all the emojis available to use on GitHub.', () => {
+  githubFetcher.emojis().then(data =>
+    assert.equal(data.length > 0, true)
+  );
+});

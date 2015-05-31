@@ -55,7 +55,9 @@ export default (() => {
 		branches: (owner, repo) => checkFetch(owner,
 			`${apiURL}${endPoints.branches}`
 			.replace(':owner', owner)
-			.replace(':repo', repo))
+			.replace(':repo', repo)),
+
+		emojis: () => get(`${apiURL}${endPoints.emojis}`)
 
 	};
 }());

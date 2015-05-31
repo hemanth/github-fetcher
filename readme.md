@@ -66,6 +66,15 @@ githubFetcher.gists('hemanth','es7-features').
 	catch( (err) => console.log(err) );
 ```
 
+## Fetch all the emojis available to use on GitHub.
+
+```js
+githubFetcher.emojis().
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
+
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)
 
