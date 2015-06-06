@@ -34,6 +34,15 @@ it('should return all the branches of a repo for the given user.', () => {
 
 it('should return all the emojis available to use on GitHub.', () => {
   githubFetcher.emojis().then(data =>
-    assert.equal(data.length > 0, true)
-  );
+    assert.equal(data.length > 0, true));
+});
+
+it('should return all the gitignore templates.', () => {
+  githubFetcher.gitIgnore().then(data =>
+    assert.equal(data.length > 0, true));
+});
+
+it('should return node\'s gitignore template.', () => {
+  githubFetcher.gitIgnore('node').then(data =>
+    assert.equal(data.length > 0, true));
 });

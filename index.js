@@ -27,7 +27,8 @@ var endPoints = {
 	stargazers: '/repos/:owner/:repo/stargazers',
 	repos: '/repos',
 	branches: '/repos/:owner/:repo/branches',
-	emojis: '/emojis'
+	emojis: '/emojis',
+	gitIgnore: '/gitignore/templates'
 };
 
 var get = function get(url) {
@@ -69,8 +70,17 @@ exports['default'] = (function () {
 
 		branches: function branches(owner, repo) {
 			return checkFetch(owner, ('' + apiURL + '' + endPoints.branches).replace(':owner', owner).replace(':repo', repo));
-		}
+		},
 
+		emojis: function emojis() {
+			return get('' + apiURL + '' + endPoints.emojis);
+		},
+
+		gitIgnore: function gitIgnore(lang) {
+			lang = lang && lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase();
+			console.log('' + apiURL + '' + endPoints.gitIgnore + '/' + lang);
+			return lang ? get('' + apiURL + '' + endPoints.gitIgnore + '' + lang) : get('' + apiURL + '' + endPoints.gitIgnore);
+		}
 	};
 })();
 

@@ -17,7 +17,8 @@ let endPoints = {
 	stargazers: '/repos/:owner/:repo/stargazers',
 	repos: '/repos',
 	branches: '/repos/:owner/:repo/branches',
-	emojis: '/emojis'
+	emojis: '/emojis',
+	gitIgnore: '/gitignore/templates'
 };
 
 let get = (url) => {
@@ -57,7 +58,12 @@ export default (() => {
 			.replace(':owner', owner)
 			.replace(':repo', repo)),
 
-		emojis: () => get(`${apiURL}${endPoints.emojis}`)
+		emojis: () => get(`${apiURL}${endPoints.emojis}`),
 
+		gitIgnore: (lang) => {
+			lang = lang && lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase();
+			return lang ? get(`${apiURL}${endPoints.gitIgnore}${lang}`) :
+				get(`${apiURL}${endPoints.gitIgnore}`);
+		}
 	};
 }());

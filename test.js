@@ -46,3 +46,21 @@ it('should return all the branches of a repo for the given user.', function () {
   });
 });
 
+it('should return all the emojis available to use on GitHub.', function () {
+  _githubFetcher2['default'].emojis().then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+});
+
+it('should return all the gitignore templates.', function () {
+  _githubFetcher2['default'].gitIgnore().then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+});
+
+it('should return node\'s gitignore template.', function () {
+  _githubFetcher2['default'].gitIgnore('node').then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+});
+

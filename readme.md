@@ -74,6 +74,20 @@ githubFetcher.emojis().
 	catch( (err) => console.log(err) );
 ```
 
+## Fetch all the gitignore templates or a specific template.
+
+```js
+githubFetcher.gitIgnore().
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+
+/* OR a specific lang */
+
+githubFetcher.gitIgnore('node').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
 
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)
