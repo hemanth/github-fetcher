@@ -1,6 +1,6 @@
 {
   "name": "github-fetcher",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Promised based isomorphic Github API.",
   "license": "MIT",
   "repository": "hemanth/github-fetcher",
