@@ -18,7 +18,8 @@ let endPoints = {
 	repos: '/repos',
 	branches: '/repos/:owner/:repo/branches',
 	emojis: '/emojis',
-	gitIgnore: '/gitignore/templates'
+	gitIgnore: '/gitignore/templates',
+	members: '/orgs/:org/members'
 };
 
 let get = (url) => {
@@ -64,6 +65,9 @@ export default (() => {
 			lang = lang && lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase();
 			return lang ? get(`${apiURL}${endPoints.gitIgnore}${lang}`) :
 				get(`${apiURL}${endPoints.gitIgnore}`);
-		}
+		},
+		members: (org) => checkFetch(org,
+			`${apiURL}${endPoints.members}`
+			.replace(':org',org))
 	};
 }());

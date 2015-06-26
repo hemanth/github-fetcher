@@ -88,6 +88,13 @@ githubFetcher.gitIgnore('node').
 	catch( (err) => console.log(err) );
 ```
 
+# Fetch all the members of the given org.
+
+```js
+githubFetcher.members('yeoman').
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
 
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)

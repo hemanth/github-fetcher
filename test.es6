@@ -46,3 +46,8 @@ it('should return node\'s gitignore template.', () => {
   githubFetcher.gitIgnore('node').then(data =>
     assert.equal(data.length > 0, true));
 });
+
+it('should return all the members of the given org.', () => {
+  githubFetcher.members('yeoman').then(data =>
+    assert.equal(data.length > 0, true));
+});

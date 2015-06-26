@@ -1,22 +1,19 @@
 'use strict';
-
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
-
 Object.defineProperty(exports, '__esModule', {
 	value: true
 });
 
-var _polyfill = require('es6-promise');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _es6Promise = require('es6-promise');
 
 var _assert = require('assert');
 
-var _assert2 = _interopRequireWildcard(_assert);
+var _assert2 = _interopRequireDefault(_assert);
 
 require('isomorphic-fetch');
 
-'use strict';
-
-_polyfill.polyfill();
+(0, _es6Promise.polyfill)();
 
 var apiURL = 'https://api.github.com';
 
@@ -28,7 +25,8 @@ var endPoints = {
 	repos: '/repos',
 	branches: '/repos/:owner/:repo/branches',
 	emojis: '/emojis',
-	gitIgnore: '/gitignore/templates'
+	gitIgnore: '/gitignore/templates',
+	members: '/orgs/:org/members'
 };
 
 var get = function get(url) {
@@ -78,8 +76,10 @@ exports['default'] = (function () {
 
 		gitIgnore: function gitIgnore(lang) {
 			lang = lang && lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase();
-			console.log('' + apiURL + '' + endPoints.gitIgnore + '/' + lang);
 			return lang ? get('' + apiURL + '' + endPoints.gitIgnore + '' + lang) : get('' + apiURL + '' + endPoints.gitIgnore);
+		},
+		members: function members(org) {
+			return checkFetch(org, ('' + apiURL + '' + endPoints.members).replace(':org', org));
 		}
 	};
 })();
