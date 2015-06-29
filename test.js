@@ -70,3 +70,13 @@ it('should return all the members of the given org.', function () {
   });
 });
 
+it('should return all the licenses.', function () {
+  _2['default'].licenses().then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+
+  _2['default'].licenses('mit').then(function (data) {
+    return _assert2['default'].equal(data.length > 0, true);
+  });
+});
+

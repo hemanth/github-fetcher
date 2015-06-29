@@ -96,6 +96,14 @@ githubFetcher.members('yeoman').
 	catch( (err) => console.log(err) );
 ```
 
+# Fetches all the licenses or particular type.
+
+```js
+githubFetcher.licenses(<type>).
+  then( (data) => console.log(data) ).
+	catch( (err) => console.log(err) );
+```
+
 ## TODO
 [issue#1](https://github.com/hemanth/github-fetcher/issues/1)
 

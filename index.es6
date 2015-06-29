@@ -19,7 +19,8 @@ let endPoints = {
 	branches: '/repos/:owner/:repo/branches',
 	emojis: '/emojis',
 	gitIgnore: '/gitignore/templates',
-	members: '/orgs/:org/members'
+	members: '/orgs/:org/members',
+	licenses: '/licenses'
 };
 
 let get = (url) => {
@@ -68,6 +69,15 @@ export default (() => {
 		},
 		members: (org) => checkFetch(org,
 			`${apiURL}${endPoints.members}`
-			.replace(':org',org))
+			.replace(':org',org)),
+		licenses: (type) => {
+			let url = '';
+			if (type) {
+				 url = `${apiURL}${endPoints.licenses}${type}`
+			} else {
+				url = `${apiURL}${endPoints.licenses}${type}`
+			}
+			return get(url);
+		}
 	};
 }());

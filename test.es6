@@ -51,3 +51,11 @@ it('should return all the members of the given org.', () => {
   githubFetcher.members('yeoman').then(data =>
     assert.equal(data.length > 0, true));
 });
+
+it('should return all the licenses.', () => {
+  githubFetcher.licenses().then(data =>
+    assert.equal(data.length > 0, true));
+
+  githubFetcher.licenses('mit').then(data =>
+    assert.equal(data.length > 0, true));
+});

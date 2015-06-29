@@ -26,7 +26,8 @@ var endPoints = {
 	branches: '/repos/:owner/:repo/branches',
 	emojis: '/emojis',
 	gitIgnore: '/gitignore/templates',
-	members: '/orgs/:org/members'
+	members: '/orgs/:org/members',
+	licenses: '/licenses'
 };
 
 var get = function get(url) {
@@ -80,6 +81,15 @@ exports['default'] = (function () {
 		},
 		members: function members(org) {
 			return checkFetch(org, ('' + apiURL + '' + endPoints.members).replace(':org', org));
+		},
+		licenses: function licenses(type) {
+			var url = '';
+			if (type) {
+				url = '' + apiURL + '' + endPoints.licenses + '' + type;
+			} else {
+				url = '' + apiURL + '' + endPoints.licenses + '' + type;
+			}
+			return get(url);
 		}
 	};
 })();
