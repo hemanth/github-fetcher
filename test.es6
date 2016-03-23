@@ -59,3 +59,28 @@ it('should return all the licenses.', () => {
   githubFetcher.licenses('mit').then(data =>
     assert.equal(data.length > 0, true));
 });
+
+it('should return the followers of the user', () => {
+  githubFetcher.followers('hemanth').then((data) =>
+    assert.equal(data.length > 0, 'hemanth'));
+});
+
+it('should return all the events on GitHub.', () => {
+  githubFetcher.events().then(data =>
+    assert.equal(data.length > 0, true));
+});
+
+it('should return all the feeds on GitHub.', () => {
+  githubFetcher.feeds().then(data =>
+    assert.equal(data.length > 0, true));
+});
+
+it('should return all the rate_limit on GitHub.', () => {
+  githubFetcher.rate_limit().then(data =>
+    assert.equal(data.length > 0, true));
+});
+
+it('should return all the events of a repo for the given user.', () => {
+  githubFetcher.repo_events('hemanth', 'es7-features').then((data) =>
+    assert.equal(data.length > 0, true));
+});

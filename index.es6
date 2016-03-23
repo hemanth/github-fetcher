@@ -20,7 +20,12 @@ let endPoints = {
 	emojis: '/emojis',
 	gitIgnore: '/gitignore/templates',
 	members: '/orgs/:org/members',
-	licenses: '/licenses'
+	licenses: '/licenses',
+	followers: '/followers',
+	events: '/events',
+	feeds: '/feeds',
+	rate_limit: '/rate_limit',
+	repo_events: '/repos/:owner/:repo/events'
 };
 
 let get = (url) => {
@@ -78,6 +83,20 @@ export default (() => {
 				url = `${apiURL}${endPoints.licenses}${type}`
 			}
 			return get(url);
-		}
+		},
+		followers: (userName) => checkFetch(userName,
+			`${apiURL}${endPoints.users}${userName}${endPoints.followers}`),
+
+		events: () => get(`${apiURL}${endPoints.events}`),
+
+		feeds: () => get(`${apiURL}${endPoints.feeds}`),
+
+		rate_limit: () => get(`${apiURL}${endPoints.rate_limit}`),
+
+		repo_events: (owner, repo) => checkFetch(owner,
+			`${apiURL}${endPoints.repo_events}`
+			.replace(':owner', owner)
+			.replace(':repo', repo))
+
 	};
 }());
