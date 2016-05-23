@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "babel": "^5.1.11",
-    "mocha": "*"
+    "mocha": "2.5.0"
   }
 }
