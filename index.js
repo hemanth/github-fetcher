@@ -27,7 +27,12 @@ var endPoints = {
 	emojis: '/emojis',
 	gitIgnore: '/gitignore/templates',
 	members: '/orgs/:org/members',
-	licenses: '/licenses'
+	licenses: '/licenses',
+	followers: '/followers',
+	events: '/events',
+	feeds: '/feeds',
+	rate_limit: '/rate_limit',
+	repo_events: '/repos/:owner/:repo/events'
 };
 
 var get = function get(url) {
@@ -48,49 +53,69 @@ var checkFetch = function checkFetch(userName, url) {
 exports['default'] = (function () {
 	return {
 		user: function user(userName) {
-			return checkFetch(userName, '' + apiURL + '' + endPoints.users + '' + userName);
+			return checkFetch(userName, '' + apiURL + endPoints.users + userName);
 		},
 
 		orgs: function orgs(userName) {
-			return checkFetch(userName, '' + apiURL + '' + endPoints.users + '' + userName + '' + endPoints.orgs);
+			return checkFetch(userName, '' + apiURL + endPoints.users + userName + endPoints.orgs);
 		},
 
 		gists: function gists(userName) {
-			return checkFetch(userName, '' + apiURL + '' + endPoints.users + '' + userName + '' + endPoints.gists);
+			return checkFetch(userName, '' + apiURL + endPoints.users + userName + endPoints.gists);
 		},
 
 		stargazers: function stargazers(owner, repo) {
-			return checkFetch(owner, ('' + apiURL + '' + endPoints.stargazers).replace(':owner', owner).replace(':repo', repo));
+			return checkFetch(owner, ('' + apiURL + endPoints.stargazers).replace(':owner', owner).replace(':repo', repo));
 		},
 
 		repos: function repos(owner) {
-			return checkFetch(owner, '' + apiURL + '' + endPoints.users + '' + owner + '' + endPoints.repos);
+			return checkFetch(owner, '' + apiURL + endPoints.users + owner + endPoints.repos);
 		},
 
 		branches: function branches(owner, repo) {
-			return checkFetch(owner, ('' + apiURL + '' + endPoints.branches).replace(':owner', owner).replace(':repo', repo));
+			return checkFetch(owner, ('' + apiURL + endPoints.branches).replace(':owner', owner).replace(':repo', repo));
 		},
 
 		emojis: function emojis() {
-			return get('' + apiURL + '' + endPoints.emojis);
+			return get('' + apiURL + endPoints.emojis);
 		},
 
 		gitIgnore: function gitIgnore(lang) {
 			lang = lang && lang.charAt(0).toUpperCase() + lang.slice(1).toLowerCase();
-			return lang ? get('' + apiURL + '' + endPoints.gitIgnore + '' + lang) : get('' + apiURL + '' + endPoints.gitIgnore);
+			return lang ? get('' + apiURL + endPoints.gitIgnore + lang) : get('' + apiURL + endPoints.gitIgnore);
 		},
 		members: function members(org) {
-			return checkFetch(org, ('' + apiURL + '' + endPoints.members).replace(':org', org));
+			return checkFetch(org, ('' + apiURL + endPoints.members).replace(':org', org));
 		},
 		licenses: function licenses(type) {
 			var url = '';
 			if (type) {
-				url = '' + apiURL + '' + endPoints.licenses + '' + type;
+				url = '' + apiURL + endPoints.licenses + type;
 			} else {
-				url = '' + apiURL + '' + endPoints.licenses + '' + type;
+				url = '' + apiURL + endPoints.licenses + type;
 			}
 			return get(url);
+		},
+		followers: function followers(userName) {
+			return checkFetch(userName, '' + apiURL + endPoints.users + userName + endPoints.followers);
+		},
+
+		events: function events() {
+			return get('' + apiURL + endPoints.events);
+		},
+
+		feeds: function feeds() {
+			return get('' + apiURL + endPoints.feeds);
+		},
+
+		rate_limit: function rate_limit() {
+			return get('' + apiURL + endPoints.rate_limit);
+		},
+
+		repo_events: function repo_events(owner, repo) {
+			return checkFetch(owner, ('' + apiURL + endPoints.repo_events).replace(':owner', owner).replace(':repo', repo));
 		}
+
 	};
 })();
 
